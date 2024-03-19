@@ -197,14 +197,14 @@ Gates.TopToolboxGroups = [
             Controls.AntiControl,             Controls.Control
         ]
     },
-    {
-        hint: "Displays",
-        gates: [
-            undefined, undefined,
-            DensityMatrixDisplayFamily.ofSize(1), BlochSphereDisplay,
-            ProbabilityDisplayFamily.ofSize(1),   AmplitudeDisplayFamily.ofSize(2)
-        ]
-    },
+    // {
+    //     hint: "Displays",
+    //     gates: [
+    //         undefined, undefined,
+    //         DensityMatrixDisplayFamily.ofSize(1), BlochSphereDisplay,
+    //         ProbabilityDisplayFamily.ofSize(1),   AmplitudeDisplayFamily.ofSize(2)
+    //     ]
+    // },
     {
         hint: "Half Turns",
         gates: [
@@ -229,15 +229,16 @@ Gates.TopToolboxGroups = [
             VariousXGates.X4, VariousXGates.X4i,
         ]
     },
+    // {
+    //     hint: "Spinning",
+    //     gates: [
+    //         PoweringGates.ZForward, PoweringGates.ZBackward,
+    //         PoweringGates.YForward, PoweringGates.YBackward,
+    //         PoweringGates.XForward, PoweringGates.XBackward,
+    //     ]
+    // },
     {
-        hint: "Spinning",
-        gates: [
-            PoweringGates.ZForward, PoweringGates.ZBackward,
-            PoweringGates.YForward, PoweringGates.YBackward,
-            PoweringGates.XForward, PoweringGates.XBackward,
-        ]
-    },
-    {
+
         hint: "Formulaic",
         gates: [
             ParametrizedRotationGates.FormulaicRotationZ, ParametrizedRotationGates.FormulaicRotationRz,
@@ -261,14 +262,14 @@ Gates.TopToolboxGroups = [
             Detectors.XDetector, Detectors.XDetectControlClear,
         ]
     },
-    {
-        hint: "Parity",
-        gates: [
-            Controls.ZParityControl, undefined,
-            Controls.YParityControl, undefined,
-            Controls.XParityControl, undefined,
-        ]
-    },
+    // {
+    //     hint: "Parity",
+    //     gates: [
+    //         Controls.ZParityControl, undefined,
+    //         Controls.YParityControl, undefined,
+    //         Controls.XParityControl, undefined,
+    //     ]
+    // },
 ];
 
 /** @type {!Array<!{hint: !string, gates: !Array<undefined|!Gate>}>} */

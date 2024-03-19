@@ -295,7 +295,7 @@ function initMenu(revision, obsIsAnyOverlayShowing) {
         obsMenuIsShowing.subscribe(showing => {
             menutDiv.style.display = showing ? 'block' : 'none';
             if (showing) {
-                document.getElementById('export-link-copy-button').focus();
+                document.getElementById('export-json-copy-button').focus();
             }
         });
     })();

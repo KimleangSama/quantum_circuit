@@ -47,7 +47,7 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
         obsExportsIsShowing.subscribe(showing => {
             exportDiv.style.display = showing ? 'block' : 'none';
             if (showing) {
-                document.getElementById('export-link-copy-button').focus();
+                document.getElementById('export-json-copy-button').focus();
             }
         });
     })();
@@ -79,18 +79,7 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
             }, 1000);
         });
 
-    // Export escaped link.
-    (() => {
-        const linkElement = /** @type {HTMLAnchorElement} */ document.getElementById('export-escaped-anchor');
-        const copyButton = /** @type {HTMLButtonElement} */ document.getElementById('export-link-copy-button');
-        const copyResultElement = /** @type {HTMLElement} */ document.getElementById('export-link-copy-result');
-        setupButtonElementCopyToClipboard(copyButton, linkElement, copyResultElement);
-        revision.latestActiveCommit().subscribe(jsonText => {
-            let escapedUrlHash = "#" + Config.URL_CIRCUIT_PARAM_KEY + "=" + encodeURIComponent(jsonText);
-            linkElement.href = escapedUrlHash;
-            linkElement.innerText = document.location.href.split("#")[0] + escapedUrlHash;
-        });
-    })();
+    
 
     // Export JSON.
     (() => {
@@ -128,63 +117,7 @@ function initExports(revision, mostRecentStats, obsIsAnyOverlayShowing) {
             });
     })();
 
-    // Export offline copy.
-    (() => {
-        const downloadButton = /** @type {HTMLButtonElement} */ document.getElementById('download-offline-copy-button');
-
-        const fileNameForState = jsonText => {
-            //noinspection UnusedCatchParameterJS,EmptyCatchBlockJS
-            try {
-                let circuitDef = fromJsonText_CircuitDefinition(jsonText);
-                if (!circuitDef.isEmpty()) {
-                    return `Quirk with Circuit - ${circuitDef.readableHash()}.html`;
-                }
-            } catch (_) {
-            }
-            return 'Quirk.html';
-        };
-
-        let latest;
-        revision.latestActiveCommit().subscribe(jsonText => {
-            downloadButton.innerText = `Download "${fileNameForState(jsonText)}"`;
-            latest = jsonText;
-        });
-
-        downloadButton.addEventListener('click', () => {
-            downloadButton.disabled = true;
-            setTimeout(() => {
-                downloadButton.disabled = false;
-            }, 1000);
-            let originalHtml = document.QUIRK_QUINE_ALL_HTML_ORIGINAL;
-
-            // Inject default circuit.
-            let startDefaultTag = '//DEFAULT_CIRCUIT_START\n';
-            let endDefaultTag = '//DEFAULT_CIRCUIT_END\n';
-            let modStart = originalHtml.indexOf(startDefaultTag);
-            let modStop = originalHtml.indexOf(endDefaultTag, modStart);
-            let moddedHtml =
-                originalHtml.substring(0, modStart) +
-                startDefaultTag +
-                'document.DEFAULT_CIRCUIT = ' + JSON.stringify(latest) + ';\n' +
-                originalHtml.substring(modStop);
-
-            // Strip analytics.
-            let anaStartTag = '<!-- Start Analytics -->\n';
-            let anaStart = moddedHtml.indexOf(anaStartTag);
-            if (anaStart !== -1) {
-                let anaStopTag = '<!-- End Analytics -->\n';
-                let anaStop = moddedHtml.indexOf(anaStopTag, anaStart);
-                if (anaStop !== -1) {
-                    moddedHtml =
-                        moddedHtml.substring(0, anaStart) +
-                        anaStartTag +
-                        moddedHtml.substring(anaStop);
-                }
-            }
-
-            saveFile(fileNameForState(latest), moddedHtml);
-        });
-    })();
+    
 }
 
 export {initExports, obsExportsIsShowing}

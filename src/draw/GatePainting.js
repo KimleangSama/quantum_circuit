@@ -28,13 +28,14 @@ class GatePainting {}
 
 const GATE_SYMBOL_FONT = '16px sans-serif';
 
+
 GatePainting.paintOutline = args => {
     if (args.isInToolbox) {
         let r = args.rect.shiftedBy(0.5, 0.5);
         args.painter.strokeLine(r.topRight(), r.bottomRight());
         args.painter.strokeLine(r.bottomLeft(), r.bottomRight());
     }
-    args.painter.strokeRect(args.rect, 'black');
+    args.painter.strokeRect(args.rect, 'purple');
 };
 
 GatePainting.paintBackground =
