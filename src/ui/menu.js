@@ -20,26 +20,92 @@ const menuIsVisible = new ObservableValue(true);
 const obsMenuIsShowing = menuIsVisible.observable().whenDifferent();
 let closeMenu = () => menuIsVisible.set(false);
 
-const stockPriceLink = {
-    "cols":[
-        ["H","X","X","X","X"],
-        ["H","H","H","H","H"],
-        ["Chance5"],
-        ["~vn6c"],
-        ["⊖","⊖","⊖","⊖","X"],
-        ["Chance5"],
-        ["~vn6c"],
-        ["⊖","⊖","⊖","⊖","X"],
-        ["Chance5"],
-        ["~vn6c"],
-        ["⊖","⊖","⊖","⊖","X"],
-        ["Chance5"],
-        ["~vn6c"],
-        ["⊖","⊖","⊖","⊖","X"],
-        ["Chance5"]
-    ],
-    "gates":[{"id":"~vn6c","name":"Oracle","circuit":{"cols":[["Z","•","◦","•","•"]]}}]
+const stockPriceLink = {   
+        "cols": [
+          [
+            "H",
+            "H",
+            "H",
+            "H"
+          ],
+          [
+            "Ryft",
+            "Ryft",
+            "Ryft",
+            "Ryft"
+          ],
+          [],
+          [
+            "Rzft",
+            "Rzft",
+            "Rzft",
+            "Rzft"
+          ],
+          [],
+          [
+            "•",
+            "X"
+          ],
+          [
+            1,
+            "•",
+            "X"
+          ],
+          [
+            1,
+            1,
+            "•",
+            "X"
+          ],
+          [
+            "X",
+            1,
+            1,
+            "•"
+          ],
+          [
+            "•",
+            1,
+            "X"
+          ],
+          [
+            1,
+            "•",
+            1,
+            "X"
+          ],
+          [
+            "X",
+            1,
+            "•"
+          ],
+          [
+            1,
+            "X",
+            1,
+            "•"
+          ]
+        ],
+        "gates": [
+          {
+            "id": "~vn6c",
+            "name": "Oracle",
+            "circuit": {
+              "cols": [
+                [
+                  "Z",
+                  "•",
+                  "◦",
+                  "•",
+                  "•"
+                ]
+              ]
+            }
+          }
+        ]
+      
 };
+
 // const groverLink = {
 //     "cols":[
 //         ["X","X","X","X","X"],
