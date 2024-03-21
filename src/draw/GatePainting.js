@@ -35,7 +35,7 @@ GatePainting.paintOutline = args => {
         args.painter.strokeLine(r.topRight(), r.bottomRight());
         args.painter.strokeLine(r.bottomLeft(), r.bottomRight());
     }
-    args.painter.strokeRect(args.rect, 'purple');
+    args.painter.strokeRect(args.rect);
 };
 
 GatePainting.paintBackground =
